@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325792193ce23a744941dd21082193c9, type: 3}
+  m_Name: 070 Weepinbell
+  m_EditorClassIdentifier: 
+  answers:
+  - Goldeen
+  - Weepinbell
+  - Magikarp
+  indexOfAnswer: 1
+  blackPokemon: {fileID: 21300000, guid: dd23f58048ce48f41ad14a9687d4eb7a, type: 3}
+  visiblePokemon: {fileID: 21300000, guid: 260611a2ad1820449b4381f26baa37b2, type: 3}

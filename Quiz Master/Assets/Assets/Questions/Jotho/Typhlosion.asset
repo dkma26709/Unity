@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325792193ce23a744941dd21082193c9, type: 3}
+  m_Name: Typhlosion
+  m_EditorClassIdentifier: 
+  answers:
+  - Cyndaquil
+  - Chimchar
+  - Typhlosion
+  indexOfAnswer: 2
+  blackPokemon: {fileID: 21300000, guid: b57589d3e556ab44792e10c9842a223c, type: 3}
+  visiblePokemon: {fileID: 21300000, guid: 775aece1365bf774a8b858633048b7ba, type: 3}

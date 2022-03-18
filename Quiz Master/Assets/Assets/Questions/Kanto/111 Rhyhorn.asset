@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325792193ce23a744941dd21082193c9, type: 3}
+  m_Name: 111 Rhyhorn
+  m_EditorClassIdentifier: 
+  answers:
+  - Nidorino
+  - Ivysaur
+  - Rhyhorn
+  indexOfAnswer: 2
+  blackPokemon: {fileID: 21300000, guid: 8461758ef961dab46b10ac870f854b7e, type: 3}
+  visiblePokemon: {fileID: 21300000, guid: 7a1605bc0910463499d3754e3b9322c6, type: 3}

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325792193ce23a744941dd21082193c9, type: 3}
+  m_Name: 109 Koffing
+  m_EditorClassIdentifier: 
+  answers:
+  - Voltorb
+  - Magnemite
+  - Koffing
+  indexOfAnswer: 2
+  blackPokemon: {fileID: 21300000, guid: 0bcec4696cc975f4d881c8d69208e438, type: 3}
+  visiblePokemon: {fileID: 21300000, guid: 89877bb38ccfda640b3cef53bad6ceee, type: 3}

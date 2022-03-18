@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325792193ce23a744941dd21082193c9, type: 3}
+  m_Name: 074 Geodude
+  m_EditorClassIdentifier: 
+  answers:
+  - Graveler
+  - Geodude
+  - Mankey
+  indexOfAnswer: 1
+  blackPokemon: {fileID: 21300000, guid: 76fe4dc59ba1f7c4186a7a88d108ff23, type: 3}
+  visiblePokemon: {fileID: 21300000, guid: 2fbf579d7c6030f42b259ec21784dc97, type: 3}

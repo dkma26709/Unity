@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325792193ce23a744941dd21082193c9, type: 3}
+  m_Name: 151 Mew
+  m_EditorClassIdentifier: 
+  answers:
+  - Mew
+  - Mewtwo
+  - Pikachu
+  indexOfAnswer: 0
+  blackPokemon: {fileID: 21300000, guid: 0c0ef56b3081aa0479803bc80f8d2365, type: 3}
+  visiblePokemon: {fileID: 21300000, guid: 92c1a73c21570c4439c324170d3938d1, type: 3}
