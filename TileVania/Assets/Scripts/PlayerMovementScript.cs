@@ -10,6 +10,9 @@ public class PlayerMovementScript : MonoBehaviour
     CapsuleCollider2D playerCollider;
     Animator animator;
     bool hasHorizontalSpeed;
+    bool hasVerticalSpeed;
+    bool isClimbing;
+    float gravityScaleAtStart;
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float climbSpeed = 10f;
     [SerializeField] float jumpForce = 5f;
@@ -20,6 +23,7 @@ public class PlayerMovementScript : MonoBehaviour
         playerBody = GetComponent<Rigidbody2D>();    
         animator = GetComponent<Animator>();
         playerCollider = GetComponent<CapsuleCollider2D>();
+        gravityScaleAtStart = playerBody.gravityScale;
     }
 
     void Update()
@@ -62,10 +66,39 @@ public class PlayerMovementScript : MonoBehaviour
 
     void Climb()
     {
-        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
+
+        // Player is idling when not climbing
+
+        animator.SetBool("IsClimbing", false);
+
+        if (!playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
-            Vector2 ClimbVelocity = new Vector2(playerBody.velocity.x, moveInput.y * climbSpeed);
-            playerBody.velocity = ClimbVelocity;
+            playerBody.gravityScale = gravityScaleAtStart;
+            return;
         }
+
+        hasVerticalSpeed = Mathf.Abs(playerBody.velocity.y) > Mathf.Epsilon;
+        animator.SetBool("IsClimbing", hasVerticalSpeed);
+        playerBody.velocity = new Vector2(playerBody.velocity.x, moveInput.y * climbSpeed);
+        playerBody.gravityScale = 0;
+
+        // Player climbing animation stops when not climbing
+
+        // isClimbing = playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"));
+        // animator.SetBool("IsClimbing", isClimbing);
+
+        // if (isClimbing)
+        // {
+        //     Vector2 ClimbVelocity = new Vector2(playerBody.velocity.x, moveInput.y * climbSpeed);
+        //     playerBody.velocity = ClimbVelocity;
+        //     playerBody.gravityScale = 0;
+        //     hasVerticalSpeed = Mathf.Abs(playerBody.velocity.y) > Mathf.Epsilon;
+        //     animator.enabled = hasVerticalSpeed;;
+        // }
+        // else
+        // {
+        //     playerBody.gravityScale = gravityScaleAtStart;
+        //     animator.enabled = true;
+        // }
     }
 }
