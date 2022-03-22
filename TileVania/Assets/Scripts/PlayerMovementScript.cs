@@ -8,10 +8,12 @@ public class PlayerMovementScript : MonoBehaviour
     Vector2 moveInput;
     Rigidbody2D playerBody;
     CapsuleCollider2D playerCollider;
+    BoxCollider2D playerFeetCollider;
     Animator animator;
     bool hasHorizontalSpeed;
     bool hasVerticalSpeed;
     bool isClimbing;
+    bool isAlive = true;
     float gravityScaleAtStart;
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float climbSpeed = 10f;
@@ -23,11 +25,15 @@ public class PlayerMovementScript : MonoBehaviour
         playerBody = GetComponent<Rigidbody2D>();    
         animator = GetComponent<Animator>();
         playerCollider = GetComponent<CapsuleCollider2D>();
+        playerFeetCollider = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = playerBody.gravityScale;
     }
 
     void Update()
     {
+        if (!isAlive)
+            return;
+
         Run();
         Climb();
         FlipSprite();
@@ -35,6 +41,9 @@ public class PlayerMovementScript : MonoBehaviour
 
     void OnMove(InputValue inputValue)
     {
+        if (!isAlive)
+            return;
+
         moveInput = inputValue.Get<Vector2>();
     }
 
@@ -57,7 +66,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     void OnJump(InputValue inputValue)
     {
-        if (inputValue.isPressed && playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (inputValue.isPressed && playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))//playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             //playerBody.AddForce(new Vector2(0f,10f));
             playerBody.velocity += new Vector2(0f, jumpForce);
@@ -100,5 +109,20 @@ public class PlayerMovementScript : MonoBehaviour
         //     playerBody.gravityScale = gravityScaleAtStart;
         //     animator.enabled = true;
         // }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collider) 
+    {
+        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")) && isAlive)
+        {
+            Die();
+        }
+        
+    }
+
+    void Die() 
+    {
+        isAlive = false;
+        GetComponent<PlayerInput>().enabled = false;
     }
 }
