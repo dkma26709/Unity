@@ -10,22 +10,28 @@ public class PlayerMovementScript : MonoBehaviour
     CapsuleCollider2D playerCollider;
     BoxCollider2D playerFeetCollider;
     Animator animator;
+    PlayerInput playerInput;
     bool hasHorizontalSpeed;
     bool hasVerticalSpeed;
     bool isClimbing;
-    bool isAlive = true;
+    bool isAlive;
     float gravityScaleAtStart;
     [SerializeField] float runSpeed = 10f;
     [SerializeField] float climbSpeed = 10f;
     [SerializeField] float jumpForce = 5f;
 
-
-    void Start()
+    private void Awake() 
     {
         playerBody = GetComponent<Rigidbody2D>();    
         animator = GetComponent<Animator>();
         playerCollider = GetComponent<CapsuleCollider2D>();
         playerFeetCollider = GetComponent<BoxCollider2D>();
+        playerInput = GetComponent<PlayerInput>();
+        isAlive = true;
+    }
+
+    void Start()
+    {
         gravityScaleAtStart = playerBody.gravityScale;
     }
 
@@ -62,6 +68,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             transform.localScale = new Vector2(Mathf.Sign(playerBody.velocity.x),1f);
         }
+        
     }
 
     void OnJump(InputValue inputValue)
@@ -113,16 +120,25 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collider) 
     {
-        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemies")) && isAlive)
+        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards")) && isAlive)
         {
             Die();
+            playerBody.drag = 2;
+            playerBody.velocity = new Vector2(Mathf.Sign(collider.relativeVelocity.x) * 5, 10);
         }
-        
     }
 
     void Die() 
     {
         isAlive = false;
-        GetComponent<PlayerInput>().enabled = false;
+        playerInput.DeactivateInput();
+        animator.SetTrigger("Dying");
+        GetComponent<SpriteRenderer>().color = new Color(0.5f,0.5f,0.5f,1);
+        Invoke("Reload", 1f);
+    }
+
+    void Reload()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }
