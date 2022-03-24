@@ -27,20 +27,30 @@ public class EnemyMovement : MonoBehaviour
         enemyBody.velocity = new Vector2(moveSpeed, enemyBody.velocity.y);    
     }
 
-    // void EnableSideCollider()
-    // {
-    //     sideCollider.enabled = !sideCollider.enabled;
+    void EnableSideCollider()
+    {
+        sideCollider.enabled = !sideCollider.enabled;
         
-    // }
+    }
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        moveSpeed = -moveSpeed;
-        FlipEnemyFacing();
+        FlipEnemy();
     }
 
-    void FlipEnemyFacing()
+    private void OnTriggerEnter2D(Collider2D other) 
     {
+        if (other.gameObject.layer ==  LayerMask.NameToLayer("Enemies"))
+        {
+            FlipEnemy();
+        }    
+    }
+
+    void FlipEnemy()
+    {
+        EnableSideCollider();
         transform.localScale = new Vector2(-Mathf.Sign(enemyBody.velocity.x), 1f);
+        moveSpeed = -moveSpeed;
+        Invoke("EnableSideCollider",0.5f);
     }
 }

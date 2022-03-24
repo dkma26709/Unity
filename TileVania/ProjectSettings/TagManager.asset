@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Bouncing
   - Enemies
   - Hazards
-  - 
-  - 
+  - Bullets
+  - Exit
   - 
   - 
   - 
@@ -58,6 +59,9 @@ TagManager:
     locked: 0
   - name: Ladder
     uniqueID: 234425311
+    locked: 0
+  - name: Exit
+    uniqueID: 2846987945
     locked: 0
   - name: Enemies
     uniqueID: 3730594177

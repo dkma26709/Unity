@@ -15,10 +15,17 @@ public class PlayerMovementScript : MonoBehaviour
     bool hasVerticalSpeed;
     bool isClimbing;
     bool isAlive;
+    bool readyToShoot = true;
     float gravityScaleAtStart;
+    [SerializeField] int shotsLeft = 3;
+    [SerializeField] float shotCooldownTime = 0.5f;
     [SerializeField] float runSpeed = 10f;
+    [SerializeField] float xSpeed;
+    [SerializeField] float speedInWater = 5f;
     [SerializeField] float climbSpeed = 10f;
     [SerializeField] float jumpForce = 5f;
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject gun;
 
     private void Awake() 
     {
@@ -33,6 +40,7 @@ public class PlayerMovementScript : MonoBehaviour
     void Start()
     {
         gravityScaleAtStart = playerBody.gravityScale;
+        xSpeed = runSpeed;
     }
 
     void Update()
@@ -55,7 +63,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     void Run()
     {
-        Vector2 playerVelcoity = new Vector2(moveInput.x * runSpeed, playerBody.velocity.y);
+        Vector2 playerVelcoity = new Vector2(moveInput.x * xSpeed, playerBody.velocity.y);
         playerBody.velocity = playerVelcoity;
         animator.SetBool("IsRunning", hasHorizontalSpeed);
     }
@@ -118,6 +126,24 @@ public class PlayerMovementScript : MonoBehaviour
         // }
     }
 
+    void OnFire(InputValue input)
+    {
+        if (!isAlive)
+            return;
+        
+        if (readyToShoot && shotsLeft > 0)
+            StartCoroutine("Fire");
+    }
+
+    IEnumerator Fire()
+    {
+        readyToShoot = false; 
+        shotsLeft--;
+        Instantiate(bullet, gun.transform.position, transform.rotation);
+        yield return new WaitForSecondsRealtime(shotCooldownTime);
+        readyToShoot = true; 
+    }
+
     private void OnCollisionEnter2D(Collision2D collider) 
     {
         if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards")) && isAlive)
@@ -125,6 +151,22 @@ public class PlayerMovementScript : MonoBehaviour
             Die();
             playerBody.drag = 2;
             playerBody.velocity = new Vector2(Mathf.Sign(collider.relativeVelocity.x) * 5, 10);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Water")))
+        {
+            xSpeed = speedInWater;
+        }    
+    }
+
+    private void OnTriggerExit2D(Collider2D other) 
+    {
+        if (other.gameObject.layer ==  LayerMask.NameToLayer("Water"))
+        {
+            xSpeed = runSpeed;
         }
     }
 
@@ -139,6 +181,7 @@ public class PlayerMovementScript : MonoBehaviour
 
     void Reload()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        
+        UnityEngine.SceneManagement.SceneManager.LoadScene(FindObjectOfType<LevelExit>().GetLevel());
     }
 }
