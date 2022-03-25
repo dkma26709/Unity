@@ -21,7 +21,7 @@ TagManager:
   - Hazards
   - Bullets
   - Exit
-  - 
+  - Coin
   - 
   - 
   - 
@@ -68,4 +68,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 775667395
+    locked: 0
+  - name: Coins
+    uniqueID: 232640889
     locked: 0

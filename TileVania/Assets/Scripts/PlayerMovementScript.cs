@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerMovementScript : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class PlayerMovementScript : MonoBehaviour
         playerFeetCollider = GetComponent<BoxCollider2D>();
         playerInput = GetComponent<PlayerInput>();
         isAlive = true;
+        FindObjectOfType<GameSession>().UpdateShotText(shotsLeft);
     }
 
     void Start()
@@ -140,6 +142,7 @@ public class PlayerMovementScript : MonoBehaviour
         readyToShoot = false; 
         shotsLeft--;
         Instantiate(bullet, gun.transform.position, transform.rotation);
+        FindObjectOfType<GameSession>().UpdateShotText(shotsLeft);
         yield return new WaitForSecondsRealtime(shotCooldownTime);
         readyToShoot = true; 
     }
@@ -181,7 +184,6 @@ public class PlayerMovementScript : MonoBehaviour
 
     void Reload()
     {
-        
-        UnityEngine.SceneManagement.SceneManager.LoadScene(FindObjectOfType<LevelExit>().GetLevel());
+        FindObjectOfType<GameSession>().ProcessPlayerDeath();
     }
 }

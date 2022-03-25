@@ -26,7 +26,9 @@ public class LevelExit : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+        FindObjectOfType<ScenePersist>().DestroyScenePersist();
         SceneManager.LoadScene(currentSceneIndex + 1);
+        FindObjectOfType<GameSession>().UpdateLevelScore();
     }
 
     public int GetLevel()
