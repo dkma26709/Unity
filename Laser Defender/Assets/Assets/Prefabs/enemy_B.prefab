@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1566057449718980059}
   - component: {fileID: 3956801458108948032}
   - component: {fileID: 442209825653778980}
+  - component: {fileID: 2710756234772020739}
   m_Layer: 8
   m_Name: enemy_B
   m_TagString: Untagged
@@ -148,3 +149,16 @@ PolygonCollider2D:
       - {x: -0.00023424625, y: -0.24035323}
       - {x: -0.08109693, y: -0.16181797}
       - {x: 0.00034538656, y: 0.2409801}
+--- !u!114 &2710756234772020739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8627816668981358618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd46e01249a06ef4f9397b92128693cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveConfig: {fileID: 11400000, guid: 839b9cce28aa3b1429626420cfdfbd14, type: 2}
