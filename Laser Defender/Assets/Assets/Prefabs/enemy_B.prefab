@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4181190039519446629}
   m_Layer: 8
   m_Name: enemy_B
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,9 +199,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54862ef197dc9d40bf47d32454495e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 200
   explosion: {fileID: 6432847888455476746, guid: ae2720b3b4c861542ae143d35bd1da0a, type: 3}
   hit: {fileID: 6432847888455476746, guid: 9363812eed2713b4c978c9c20f651307, type: 3}
+  hitSFX: {fileID: 8300000, guid: 4bd054cb65d52654880275a9d6d50c86, type: 3}
+  hitVolume: 1
+  deathSFX: {fileID: 8300000, guid: fb5f80d654fffa8479560f2d179f973f, type: 3}
+  deathVolume: 1
 --- !u!114 &-3343687242581744569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +237,8 @@ MonoBehaviour:
   baseFireRate: 2
   fireRateVariance: 1
   minimumfireRate: 0.2
+  shootSFX: {fileID: 8300000, guid: 63fe7060fc6a3cf44887235f84432c35, type: 3}
+  shootVolume: 0.5
   isFiring: 1
 --- !u!82 &4181190039519446629
 AudioSource:

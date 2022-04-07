@@ -141,9 +141,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54862ef197dc9d40bf47d32454495e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 250
   explosion: {fileID: 6432847888455476746, guid: 95f8b13be9b3d03489aa2396431442e6, type: 3}
   hit: {fileID: 6432847888455476746, guid: 0931d141df034df4bab7079062dd43e5, type: 3}
+  hitSFX: {fileID: 8300000, guid: 9d5629ec0bbcd6b498088acd7f682916, type: 3}
+  hitVolume: 1
+  deathSFX: {fileID: 8300000, guid: 2b5d0a41d42f8e14b824f402bfce4b8e, type: 3}
+  deathVolume: 1
 --- !u!114 &477914840260460874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,9 +163,11 @@ MonoBehaviour:
   projectile: {fileID: 634294480019212463, guid: 05cfe5b592c23cb4bb0194275bec674c, type: 3}
   projectileSpeed: 10
   projectileLifeTime: 3
-  baseFireRate: 0.3
+  baseFireRate: 0.1
   fireRateVariance: 0
-  minimumfireRate: 0.2
+  minimumfireRate: 0
+  shootSFX: {fileID: 8300000, guid: 9164b628d5211be45853e3a9cc2ce237, type: 3}
+  shootVolume: 0.5
   isFiring: 0
 --- !u!82 &4510254610810140568
 AudioSource:

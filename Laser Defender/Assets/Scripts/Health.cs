@@ -11,8 +11,15 @@ public class Health : MonoBehaviour
     CameraShake mainCamera;
     AudioPlayer audioPlayer;
 
-    void Awake() {
-        
+    [Header("SFX")]
+    [SerializeField] AudioClip hitSFX;
+    [SerializeField, Range(0,1)] float hitVolume;
+    [SerializeField] AudioClip deathSFX;
+    [SerializeField, Range(0,1)] float deathVolume;
+
+    void Awake() 
+    {
+        audioPlayer = FindObjectOfType<AudioPlayer>();    
     }
 
     private void Start() 
@@ -39,11 +46,10 @@ public class Health : MonoBehaviour
     void TakeDamage(int damage)
     {
         health -= damage;
+        audioPlayer.PlayAudioClip(hitSFX, hitVolume);
         if (gameObject.tag == "Player")
         {
             mainCamera.Play();
-            
-
         }
         if (health <= 0)
         {
@@ -54,6 +60,7 @@ public class Health : MonoBehaviour
     void Die()
     {
         PlayExplosionEffect();
+        audioPlayer.PlayAudioClip(deathSFX, deathVolume);
         Destroy(gameObject);
     }
 

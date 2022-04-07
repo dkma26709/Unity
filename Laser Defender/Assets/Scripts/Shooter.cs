@@ -14,6 +14,10 @@ public class Shooter : MonoBehaviour
     [SerializeField] float fireRateVariance = 0f;
     [SerializeField] float minimumfireRate = 0.2f;
 
+    [Header("SFX")]
+    [SerializeField] AudioClip shootSFX;
+    [SerializeField, Range(0,1)] float shootVolume;
+
     Coroutine firingCoroutine;
 
     AudioPlayer audioPlayer;
@@ -46,7 +50,7 @@ public class Shooter : MonoBehaviour
     {
         while (isFiring)
         {
-            audioPlayer.Shoot(gameObject.tag);
+            audioPlayer.PlayAudioClip(shootSFX, shootVolume);
             GameObject tempProjectile = Instantiate(projectile, gameObject.transform.position, Quaternion.identity);
             tempProjectile.GetComponent<Rigidbody2D>().velocity = transform.up * projectileSpeed;
             Destroy(tempProjectile, projectileLifeTime);
