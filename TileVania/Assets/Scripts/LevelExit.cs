@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelExit : MonoBehaviour
 {
+    [SerializeField] int nextLevel = -1;
+
     int currentSceneIndex;
 
     private void Start() {
@@ -27,7 +29,15 @@ public class LevelExit : MonoBehaviour
             SceneManager.LoadScene(0);
         }
         FindObjectOfType<ScenePersist>().DestroyScenePersist();
-        SceneManager.LoadScene(currentSceneIndex + 1);
+        if (nextLevel != -1)
+        {
+            SceneManager.LoadScene(nextLevel);
+        }
+        else
+        {
+            SceneManager.LoadScene(currentSceneIndex + 1);
+        }
+
         FindObjectOfType<GameSession>().UpdateLevelScore();
     }
 
