@@ -16,10 +16,12 @@ public class Shooter : MonoBehaviour
 
     Coroutine firingCoroutine;
 
-    public bool isFiring;
-    void Start()
-    {
+    AudioPlayer audioPlayer;
 
+    public bool isFiring;
+    void Awake()
+    {
+        audioPlayer = FindObjectOfType<AudioPlayer>(); 
     }
 
     void Update()
@@ -44,6 +46,7 @@ public class Shooter : MonoBehaviour
     {
         while (isFiring)
         {
+            audioPlayer.Shoot(gameObject.tag);
             GameObject tempProjectile = Instantiate(projectile, gameObject.transform.position, Quaternion.identity);
             tempProjectile.GetComponent<Rigidbody2D>().velocity = transform.up * projectileSpeed;
             Destroy(tempProjectile, projectileLifeTime);

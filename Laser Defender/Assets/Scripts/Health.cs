@@ -9,6 +9,11 @@ public class Health : MonoBehaviour
     [SerializeField] ParticleSystem hit;
 
     CameraShake mainCamera;
+    AudioPlayer audioPlayer;
+
+    void Awake() {
+        
+    }
 
     private void Start() 
     {
@@ -37,6 +42,7 @@ public class Health : MonoBehaviour
         if (gameObject.tag == "Player")
         {
             mainCamera.Play();
+            
 
         }
         if (health <= 0)
