@@ -16,7 +16,7 @@ public class Shooter : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] AudioClip shootSFX;
-    [SerializeField, Range(0,1)] float shootVolume;
+    [SerializeField, Range(0, 1)] float shootVolume;
 
     Coroutine firingCoroutine;
 
@@ -25,7 +25,7 @@ public class Shooter : MonoBehaviour
     public bool isFiring;
     void Awake()
     {
-        audioPlayer = FindObjectOfType<AudioPlayer>(); 
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     void Update()
@@ -56,7 +56,7 @@ public class Shooter : MonoBehaviour
             Destroy(tempProjectile, projectileLifeTime);
 
             yield return new WaitForSecondsRealtime(GetRandomFireRate());
-        } 
+        }
     }
 
     float GetRandomFireRate()
@@ -64,7 +64,7 @@ public class Shooter : MonoBehaviour
         if (fireRateVariance != 0)
         {
             float tempNumber = Random.Range(baseFireRate - fireRateVariance, baseFireRate + fireRateVariance);
-            return Mathf.Clamp(tempNumber ,minimumfireRate, float.MaxValue);
+            return Mathf.Clamp(tempNumber, minimumfireRate, float.MaxValue);
         }
         return baseFireRate;
     }

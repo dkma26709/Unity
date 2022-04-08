@@ -10,7 +10,7 @@ public class Pathfinder : MonoBehaviour
     List<Transform> wayPoints;
 
     int wayPointIndex = 0;
-    void Awake() 
+    void Awake()
     {
         enemySpawner = FindObjectOfType<EnemySpawner>();
         waveConfig = enemySpawner.GetCurrentWave();

@@ -20,11 +20,12 @@ public class Player : MonoBehaviour
 
     Shooter shooter;
 
-    private void Awake() {
+    private void Awake()
+    {
         shooter = GetComponent<Shooter>();
     }
 
-    void Start() 
+    void Start()
     {
         InitBounds();
     }
@@ -36,13 +37,13 @@ public class Player : MonoBehaviour
     void InitBounds()
     {
         Camera mainCamera = Camera.main;
-        minBounds = mainCamera.ViewportToWorldPoint(new Vector2(0,0)); 
-        maxBounds = mainCamera.ViewportToWorldPoint(new Vector2(1,1)); 
+        minBounds = mainCamera.ViewportToWorldPoint(new Vector2(0, 0));
+        maxBounds = mainCamera.ViewportToWorldPoint(new Vector2(1, 1));
     }
 
     void Move()
     {
-        
+
         Vector2 delta = rawInput * Time.deltaTime * moveSpeed;
 
         Vector2 newPos = new Vector2();

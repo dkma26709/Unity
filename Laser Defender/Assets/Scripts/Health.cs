@@ -7,22 +7,27 @@ public class Health : MonoBehaviour
     [SerializeField] int health = 100;
     [SerializeField] ParticleSystem explosion;
     [SerializeField] ParticleSystem hit;
+    [SerializeField] int ScoreOnDestroy;
+    [SerializeField] bool isPlayer;
 
     CameraShake mainCamera;
     AudioPlayer audioPlayer;
+    Score scoreKeeper;
+
 
     [Header("SFX")]
     [SerializeField] AudioClip hitSFX;
-    [SerializeField, Range(0,1)] float hitVolume;
+    [SerializeField, Range(0, 1)] float hitVolume;
     [SerializeField] AudioClip deathSFX;
-    [SerializeField, Range(0,1)] float deathVolume;
+    [SerializeField, Range(0, 1)] float deathVolume;
 
-    void Awake() 
+    void Awake()
     {
-        audioPlayer = FindObjectOfType<AudioPlayer>();    
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+        scoreKeeper = FindObjectOfType<Score>();
     }
 
-    private void Start() 
+    private void Start()
     {
         mainCamera = FindObjectOfType<CameraShake>();
     }
@@ -32,7 +37,7 @@ public class Health : MonoBehaviour
         return health;
     }
 
-    void OnTriggerEnter2D(Collider2D otherCollider) 
+    void OnTriggerEnter2D(Collider2D otherCollider)
     {
         DamageDealer damageDealer = otherCollider.GetComponent<DamageDealer>();
         if (damageDealer != null)
@@ -40,14 +45,14 @@ public class Health : MonoBehaviour
             TakeDamage(damageDealer.GetDamage());
             PlayHitEffect();
             damageDealer.Hit();
-        }    
+        }
     }
 
     void TakeDamage(int damage)
     {
         health -= damage;
         audioPlayer.PlayAudioClip(hitSFX, hitVolume);
-        if (gameObject.tag == "Player")
+        if (isPlayer)
         {
             mainCamera.Play();
         }
@@ -62,6 +67,10 @@ public class Health : MonoBehaviour
         PlayExplosionEffect();
         audioPlayer.PlayAudioClip(deathSFX, deathVolume);
         Destroy(gameObject);
+        if (!isPlayer)
+        {
+            scoreKeeper.ModifyScore(ScoreOnDestroy);
+        }
     }
 
     void PlayExplosionEffect()

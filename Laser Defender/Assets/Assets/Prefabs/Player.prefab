@@ -144,6 +144,8 @@ MonoBehaviour:
   health: 250
   explosion: {fileID: 6432847888455476746, guid: 95f8b13be9b3d03489aa2396431442e6, type: 3}
   hit: {fileID: 6432847888455476746, guid: 0931d141df034df4bab7079062dd43e5, type: 3}
+  ScoreOnDestroy: 0
+  isPlayer: 1
   hitSFX: {fileID: 8300000, guid: 9d5629ec0bbcd6b498088acd7f682916, type: 3}
   hitVolume: 1
   deathSFX: {fileID: 8300000, guid: 2b5d0a41d42f8e14b824f402bfce4b8e, type: 3}
