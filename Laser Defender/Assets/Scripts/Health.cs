@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     CameraShake mainCamera;
     AudioPlayer audioPlayer;
     Score scoreKeeper;
+    LevelManager lvManager;
 
 
     [Header("SFX")]
@@ -25,6 +26,7 @@ public class Health : MonoBehaviour
     {
         audioPlayer = FindObjectOfType<AudioPlayer>();
         scoreKeeper = FindObjectOfType<Score>();
+        lvManager = FindObjectOfType<LevelManager>();
     }
 
     private void Start()
@@ -70,6 +72,10 @@ public class Health : MonoBehaviour
         if (!isPlayer)
         {
             scoreKeeper.ModifyScore(ScoreOnDestroy);
+        }
+        else
+        {
+            lvManager.LoadGameOver();
         }
     }
 

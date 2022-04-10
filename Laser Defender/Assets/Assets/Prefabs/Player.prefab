@@ -82,10 +82,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  paddingLeft: 0.5
-  paddingRight: 0.5
-  paddingTop: 2
-  paddingBottom: 1
+  paddingLeft: 0.3
+  paddingRight: 0.3
+  paddingTop: 0.3
+  paddingBottom: 1.3
 --- !u!50 &5713753769945636863
 Rigidbody2D:
   serializedVersion: 4

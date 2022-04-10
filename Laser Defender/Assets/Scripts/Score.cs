@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Score : MonoBehaviour
 {
@@ -8,14 +9,34 @@ public class Score : MonoBehaviour
 
     int score = 0;
 
+    static Score instance;
+
     void Awake() 
     {
+        ManageSingleton();
         ui = FindObjectOfType<UIDIsplay>();    
+    }
+
+    private void ManageSingleton()
+    {
+        if(instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     void Start() 
     {
-        ui.UpdateScoreUI();
+        if (SceneManager.GetActiveScene().ToString() == "Game")
+        {
+            ui.UpdateScoreUI();
+        }
     }
 
     public int GetScore()
@@ -23,16 +44,20 @@ public class Score : MonoBehaviour
         return score;
     }
 
-    void ResetScore()
+    public void ResetScore()
     {
         score = 0;
-        ui.UpdateScoreUI();
     }
 
     public void ModifyScore(int value)
     {
         Mathf.Clamp(score += value, 0, int.MaxValue);
         ui.UpdateScoreUI();
+    }
+
+    public void FindUI()
+    {
+        ui = FindObjectOfType<UIDIsplay>();
     }
 
 

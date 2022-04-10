@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         InitBounds();
+        FindObjectOfType<Score>().FindUI();
     }
     void Update()
     {
