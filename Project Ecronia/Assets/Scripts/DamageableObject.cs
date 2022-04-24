@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class DamageableObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] int HitPoints;
+
+    void OnHit(int damage) 
     {
-        
+        HitPoints -= damage;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDeath()
     {
-        
+        Destroy(gameObject);
     }
 }
