@@ -169,7 +169,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0043964, y: 1}
+    m_SensorSize: {x: 2.101844, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -207,6 +207,8 @@ GameObject:
   - component: {fileID: 1090746769}
   - component: {fileID: 1090746773}
   - component: {fileID: 1090746772}
+  - component: {fileID: 1090746774}
+  - component: {fileID: 1090746775}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -226,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 2dd60a07274deed4fb2833f227fea64d, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 0e28f30077525f74b843b514a4f5c5ab, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -240,8 +242,8 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!212 &1090746770
@@ -358,6 +360,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1090746774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090746768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14e1a64a73a6dc54095a103006e9545d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  jumpForce: 100
+--- !u!114 &1090746775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090746768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01afe06a0ca641e4aaddeb9386fdfc35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitPoints: 1
 --- !u!1 &1150284779
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409361280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.205491, y: -1.8223, z: 0}
+  m_LocalPosition: {x: 2.205491, y: -4.68, z: 0}
   m_LocalScale: {x: 1, y: 0.378, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
