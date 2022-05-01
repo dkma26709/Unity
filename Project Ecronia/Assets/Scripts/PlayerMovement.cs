@@ -14,6 +14,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float JumpForce = 10f;
 
+    private bool Grounded 
+    { 
+        get
+        {
+            return grounded;
+        }
+        set
+        {
+            if (value != grounded)
+            {
+                grounded = value;
+            }
+        } 
+    }
     bool grounded = true;
 
     Rigidbody2D playerBody;
@@ -45,18 +59,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown(jump) && grounded)
+        if (Input.GetKeyDown(jump) && Grounded)
         {
-            grounded = false;
+            Grounded = false;
             playerBody.AddForce(new Vector2(0, JumpForce));
         }
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        if (other.gameObject.tag == "Ground")
+        if (other.gameObject.tag == "Ground" || other.gameObject.tag == "Player")
         {
-            grounded = true;
+            Grounded = true;
         }    
     }
+
+    // Small bug where if both players jump at same time, they stay together, meaning they won't re-collide with each other, and so won't reset their jumps.
+
+    // Could be partially fixed, by using OnCollisionStay2D, but that makes the players able to double jump, presumably due to the players being in contact with the earth just as they jump,
+    //resetting it. Furthermore, they would be able to infinitely jump, as long as they touch each other
 }
