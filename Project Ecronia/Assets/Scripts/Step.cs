@@ -24,7 +24,6 @@ public class Step : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.Equals(ActivationCollider))
-        //if (other.gameObject.tag == "Player")
         {
             if (NextStep != null)
             {
