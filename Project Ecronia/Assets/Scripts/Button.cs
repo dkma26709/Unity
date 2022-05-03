@@ -9,23 +9,23 @@ public class Button : MonoBehaviour
 {
     [SerializeField] List<ActivateableGameObject> ActivateableGameObjects;
     [SerializeField] List<Activator> Activators;
-    [SerializeField] Collider2D trigger;
+    [SerializeField] Collider2D buttonTrigger;
 
-    ActivateableGameObject ag;
+    ActivateableGameObject thisActivatabelGameObject;
 
 
     private void Awake() 
     {
-        ag = GetComponent<ActivateableGameObject>();
+        thisActivatabelGameObject = GetComponent<ActivateableGameObject>();
     }
 
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        ag.SetFixedState(true);
+        thisActivatabelGameObject.SetFixedState(true);
 
         foreach (var activator in Activators)
         {
-            if (trigger.IsTouching(activator.GetCollider()))
+            if (buttonTrigger.IsTouching(activator.GetCollider()))
             {
                 SetActivatables(true);
             }
@@ -37,12 +37,12 @@ public class Button : MonoBehaviour
     {
         foreach (var activator in Activators)
         {
-            if (trigger.IsTouching(activator.GetCollider()))
+            if (buttonTrigger.IsTouching(activator.GetCollider()))
             {
                 return;
             }
         }
-        ag.SetFixedState(false);
+        thisActivatabelGameObject.SetFixedState(false);
         SetActivatables(false);
     }
 

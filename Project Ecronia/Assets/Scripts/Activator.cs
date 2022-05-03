@@ -7,7 +7,8 @@ public class Activator : MonoBehaviour
 {
     Collider2D ActivationCollider;
 
-    private void Awake() {
+    private void Awake() 
+    {
         ActivationCollider = GetComponent<Collider2D>();
     }
 
