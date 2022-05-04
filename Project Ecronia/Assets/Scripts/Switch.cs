@@ -12,6 +12,8 @@ namespace Assets.Scripts
         [SerializeField] List<Activator> Activators;
         [SerializeField] Collider2D switchTrigger;
 
+        [SerializeField] bool activateOnTrigger = true;
+
         ActivateableGameObject thisActivatabelGameObject;
 
 
@@ -27,8 +29,8 @@ namespace Assets.Scripts
             {
                 if (switchTrigger.IsTouching(activator.GetCollider()))
                 {
-                    thisActivatabelGameObject.SetFixedState(true);
-                    SetActivatables(true);
+                    thisActivatabelGameObject.SetFixedState(activateOnTrigger);
+                    SetActivatables(activateOnTrigger);
                     break;
                 }
             }
@@ -43,8 +45,8 @@ namespace Assets.Scripts
                     return;
                 }
             }
-            thisActivatabelGameObject.SetFixedState(false);
-            SetActivatables(false);
+            thisActivatabelGameObject.SetFixedState(!activateOnTrigger);
+            SetActivatables(!activateOnTrigger);
         }
 
         void SetActivatables(bool state)

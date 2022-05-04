@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 1737690479293087610}
   - component: {fileID: 1737690479293087611}
   - component: {fileID: 1737690479293087608}
-  - component: {fileID: 1737690479293087613}
   - component: {fileID: 1737690479293087612}
+  - component: {fileID: 1319423755}
+  - component: {fileID: 1319423756}
   m_Layer: 0
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,23 +114,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1737690479293087613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737690479293087609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ff864655362f5a42aeb268d5fb3e7bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barriers:
-  - {fileID: 0}
-  ButtonPressCollider: {fileID: 1737690479293087612}
-  Player1Collider: {fileID: 0}
-  Player2Collider: {fileID: 0}
 --- !u!61 &1737690479293087612
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -156,3 +140,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &1319423755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737690479293087609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f708a9bc9d849fb45923b028b12cb238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivateableGameObjects:
+  - {fileID: 0}
+  Activators:
+  - {fileID: 0}
+  - {fileID: 0}
+  switchTrigger: {fileID: 1737690479293087612}
+  activateOnTrigger: 0
+--- !u!114 &1319423756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737690479293087609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998ccf6bd94364b4fb1f112612f1112b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fixedState: 0
+  isInitial: 0
