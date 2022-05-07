@@ -6,13 +6,38 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement")]
+    [Header("Movement Keys")]
     [SerializeField] KeyCode jump;
     [SerializeField] KeyCode right;
     [SerializeField] KeyCode left;
+    [SerializeField] KeyCode changeForm;
 
-    [SerializeField] float moveSpeed = 10f;
-    [SerializeField] float JumpForce = 10f;
+    int currentForm = 0;
+
+    // Values used in calculations
+    float moveSpeed = 10f;
+    float JumpForce = 10f;
+
+    [Header("Form values")]
+    // Form 0
+    [SerializeField] float Form_0_MoveSpeed = 10f;
+    [SerializeField] float Form_0_JumpForce = 10f;
+    [SerializeField] float Form_0_GravityScale = 10f;
+    [SerializeField] Vector3 Form_0_Scale;
+    [SerializeField] Color Form_0_Color;
+
+    // Form 1
+    [SerializeField] float Form_1_MoveSpeed = 10f;
+    [SerializeField] float Form_1_JumpForce = 1500f;
+    [SerializeField] float Form_1_GravityScale = 10f;
+    [SerializeField] Vector3 Form_1_Scale;
+    [SerializeField] Color Form_1_Color;
+
+    Rigidbody2D playerBody;
+    Collider2D playercollider;
+    SpriteRenderer spriteRenderer;
+
+
 
     private bool Grounded 
     { 
@@ -30,15 +55,20 @@ public class PlayerMovement : MonoBehaviour
     }
     bool grounded = true;
 
-    Rigidbody2D playerBody;
+
     private void Awake() 
     {
         playerBody = gameObject.GetComponent<Rigidbody2D>();
+        playercollider = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        ChangeFormValues(currentForm);
     }
     void Update()
     {
         Move();
         Jump();
+        ChangeForm();
     }
 
     private void Move()
@@ -73,6 +103,51 @@ public class PlayerMovement : MonoBehaviour
             Grounded = true;
         }    
     }
+
+    private void ChangeForm()
+    {
+        if (Input.GetKeyDown(changeForm))
+        {
+            currentForm++;
+            if (currentForm > 1)
+            {
+                currentForm = 0;
+            }
+            ChangeFormValues(currentForm);
+        }
+    }
+
+    private void ChangeFormValues(int index)
+    {
+        if (index == 0)
+        {
+            playerBody.gravityScale = Form_0_GravityScale;
+            moveSpeed = Form_0_MoveSpeed;
+            JumpForce = Form_0_JumpForce;
+            this.transform.localScale = Form_0_Scale;
+            spriteRenderer.color = Form_0_Color;
+            SetBounce(false);
+        }
+        else if (index == 1)
+        {
+            playerBody.gravityScale = Form_1_GravityScale;
+            moveSpeed = Form_1_MoveSpeed;
+            JumpForce = Form_1_JumpForce;
+            this.transform.localScale = Form_1_Scale;
+            spriteRenderer.color = Form_1_Color;
+            SetBounce(true);
+        }
+    }
+
+    void SetBounce(bool state)
+    {
+        if (GetComponent<Bounce>() != null)
+        {
+            GetComponent<Bounce>().setBounce(state);
+        }
+    }
+
+
 
     // Small bug where if both players jump at same time, they stay together, meaning they won't re-collide with each other, and so won't reset their jumps.
 
