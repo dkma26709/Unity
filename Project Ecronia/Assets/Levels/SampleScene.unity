@@ -2704,7 +2704,7 @@ MonoBehaviour:
   Form_0_Scale: {x: 1, y: 1, z: 0}
   Form_0_Color: {r: 0.121568635, g: 0.57254905, b: 0.85098046, a: 1}
   Form_1_MoveSpeed: 10
-  Form_1_JumpForce: 500
+  Form_1_JumpForce: 600
   Form_1_GravityScale: 5
   Form_1_Scale: {x: 4, y: 1, z: 0}
   Form_1_Color: {r: 0.606906, g: 0.1484959, b: 0.6698113, a: 1}

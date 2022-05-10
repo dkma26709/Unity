@@ -92,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(jump) && Grounded)
         {
             Grounded = false;
+            playerBody.velocity = Vector2.zero;
             playerBody.AddForce(new Vector2(0, JumpForce));
         }
     }
