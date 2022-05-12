@@ -6,6 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip landingSound;
+
     [Header("Movement Keys")]
     [SerializeField] KeyCode jump;
     [SerializeField] KeyCode right;
@@ -37,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     Collider2D playercollider;
     SpriteRenderer spriteRenderer;
 
+    AudioManager audioManager;
 
 
     private bool Grounded 
@@ -61,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         playerBody = gameObject.GetComponent<Rigidbody2D>();
         playercollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioManager = FindObjectOfType<AudioManager>();
 
         ChangeFormValues(currentForm);
     }
@@ -91,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(jump) && Grounded)
         {
+            audioManager.PlaySound(jumpSound);
             Grounded = false;
             playerBody.velocity = Vector2.zero;
             playerBody.AddForce(new Vector2(0, JumpForce));
@@ -101,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Ground" || other.gameObject.tag == "Player")
         {
+            audioManager.PlaySound(landingSound);
             Grounded = true;
         }    
     }

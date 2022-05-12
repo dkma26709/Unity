@@ -12,14 +12,24 @@ namespace Assets.Scripts
         [SerializeField] List<Activator> Activators;
         [SerializeField] Collider2D switchTrigger;
 
+        [SerializeField] AudioClip activationSound;
+        [SerializeField] AudioClip deactivationSound;
+
         [SerializeField] bool activateOnTrigger = true;
 
         ActivateableGameObject thisActivatabelGameObject;
+
+        AudioManager audioManager;
 
 
         private void Awake()
         {
             thisActivatabelGameObject = GetComponent<ActivateableGameObject>();
+        }
+
+        private void Start()
+        {
+            audioManager = FindObjectOfType<AudioManager>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -51,6 +61,15 @@ namespace Assets.Scripts
 
         void SetActivatables(bool state)
         {
+            if (state)
+            {
+                audioManager.PlaySound(activationSound);
+            }
+            else
+            {
+                audioManager.PlaySound(deactivationSound);
+            }
+
             foreach (var AG in ActivateableGameObjects)
             {
                 AG.SetState(state);
