@@ -63,11 +63,11 @@ namespace Assets.Scripts
         {
             if (state)
             {
-                audioManager.PlaySound(activationSound);
+                StartCoroutine(audioManager.PlaySound(activationSound));
             }
             else
             {
-                audioManager.PlaySound(deactivationSound);
+                StartCoroutine(audioManager.PlaySound(deactivationSound));
             }
 
             foreach (var AG in ActivateableGameObjects)

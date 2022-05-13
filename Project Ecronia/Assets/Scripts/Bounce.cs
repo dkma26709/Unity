@@ -23,7 +23,8 @@ public class Bounce : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player" && canBounce)
         {
-            audioManager.PlaySound(BounceSound);
+            StartCoroutine(audioManager.PlaySound(BounceSound));
+            
             Rigidbody2D player = collider.gameObject.GetComponent<Rigidbody2D>();
             player.velocity = Vector2.zero;
             player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, bounceForce)); 

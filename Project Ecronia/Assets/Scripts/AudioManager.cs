@@ -21,8 +21,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(AudioClip audioClip)
+    public IEnumerator PlaySound(AudioClip audioClip, float delay = 0)
     {
+        yield return new WaitForSecondsRealtime(delay);
         AudioSource.PlayClipAtPoint(audioClip, mainCam.transform.position);
     }
 }

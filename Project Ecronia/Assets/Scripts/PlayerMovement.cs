@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     AudioManager audioManager;
 
+    [SerializeField] RespawnPoint respawnPoint;
 
     private bool Grounded 
     { 
@@ -97,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(jump) && Grounded)
         {
-            audioManager.PlaySound(jumpSound);
+            StartCoroutine(audioManager.PlaySound(jumpSound));
             Grounded = false;
             playerBody.velocity = Vector2.zero;
             playerBody.AddForce(new Vector2(0, JumpForce));
@@ -108,7 +109,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Ground" || other.gameObject.tag == "Player")
         {
-            audioManager.PlaySound(landingSound);
+            StartCoroutine(audioManager.PlaySound(landingSound));
+
             Grounded = true;
         }    
     }
@@ -156,6 +158,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void SetRespanwPoint(RespawnPoint point)
+    {
+        respawnPoint = point;
+    }
+
+    public RespawnPoint GetRespawnPoint()
+    {
+        return respawnPoint;
+    }
 
 
     // Small bug where if both players jump at same time, they stay together, meaning they won't re-collide with each other, and so won't reset their jumps.

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DamageableObject : MonoBehaviour
 {
+    [SerializeField] KeyCode respawnKey;
+
     [SerializeField] int HitPoints;
 
     [SerializeField] AudioClip onHitSound;
@@ -15,15 +17,39 @@ public class DamageableObject : MonoBehaviour
     {
         audioManager = FindObjectOfType<AudioManager>();
     }
-    void OnHit(int damage) 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(respawnKey))
+        {
+            Respawn();
+        }
+    }
+    public void OnHit(int damage) 
     {
         audioManager.PlaySound(onHitSound);
         HitPoints -= damage;
     }
 
-    void OnDeath()
+    public void OnDeath()
     {
-        audioManager.PlaySound(onDeathSound);
-        Destroy(gameObject);
+        StartCoroutine(audioManager.PlaySound(onDeathSound, 0.1f));
+        
+
+        if (gameObject.tag == "Player")
+        {
+            Respawn();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+
+    private void Respawn()
+    {
+        transform.position = GetComponent<PlayerMovement>().GetRespawnPoint().GetSpawnPoint();
+        GetComponent<PlayerMovement>().GetRespawnPoint().PlayParticleEffect();
+    }
+
 }
