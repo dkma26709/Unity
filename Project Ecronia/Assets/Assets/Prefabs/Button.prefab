@@ -158,6 +158,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   switchTrigger: {fileID: 1737690479293087612}
+  activationSound: {fileID: 8300000, guid: e055759fff29b3c4c9e89949222e3721, type: 3}
+  deactivationSound: {fileID: 8300000, guid: 7f332c6286870804aa7fa9f71f830477, type: 3}
   activateOnTrigger: 0
 --- !u!114 &1319423756
 MonoBehaviour:
