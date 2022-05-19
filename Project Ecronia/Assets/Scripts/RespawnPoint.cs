@@ -17,7 +17,7 @@ public class RespawnPoint : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerMovement>().SetRespanwPoint(this);
-            
+            PlayParticleEffect();
         }
     }
 
