@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7862130954491918992}
   - component: {fileID: 2185798352272483663}
   - component: {fileID: 2185798352272483662}
+  - component: {fileID: 450546137}
   m_Layer: 6
   m_Name: Player Character (1)
   m_TagString: Player
@@ -31,7 +32,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7862130954491919086}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.74, y: -1.24, z: -7.6389074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -59,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -202,12 +203,12 @@ MonoBehaviour:
   Form_0_JumpForce: 1000
   Form_0_GravityScale: 5
   Form_0_Scale: {x: 1, y: 1, z: 0}
-  Form_0_Color: {r: 0.121568635, g: 0.57254905, b: 0.85098046, a: 1}
+  Form_0_Color: {r: 0.95686275, g: 0.6509804, b: 0.08627451, a: 1}
   Form_1_MoveSpeed: 10
   Form_1_JumpForce: 600
   Form_1_GravityScale: 5
   Form_1_Scale: {x: 4, y: 0.7, z: 0}
-  Form_1_Color: {r: 0.606906, g: 0.1484959, b: 0.6698113, a: 1}
+  Form_1_Color: {r: 0.101960786, g: 0.13333334, b: 0.27058825, a: 1}
   respawnPoint: {fileID: 0}
 --- !u!114 &2185798352272483663
 MonoBehaviour:
@@ -236,3 +237,30 @@ MonoBehaviour:
   bounceForce: 1500
   trigger: {fileID: 2185798352272483697}
   BounceSound: {fileID: 8300000, guid: b8003f9b5e10cef4fb72300efe395509, type: 3}
+--- !u!114 &450546137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862130954491919086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -42198

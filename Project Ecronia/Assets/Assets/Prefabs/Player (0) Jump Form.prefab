@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -148,14 +148,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8c05f76761d824bae8d7e103bf3873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpSound: {fileID: 0}
+  landingSound: {fileID: 0}
   jump: 119
   right: 100
   left: 97
   changeForm: 0
-  moveSpeed: 10
-  JumpForce: 1500
-  form: {fileID: 0}
-  PlayerCamera: {fileID: 0}
+  Form_0_MoveSpeed: 10
+  Form_0_JumpForce: 10
+  Form_0_GravityScale: 10
+  Form_0_Scale: {x: 0, y: 0, z: 0}
+  Form_0_Color: {r: 0, g: 0, b: 0, a: 0}
+  Form_1_MoveSpeed: 10
+  Form_1_JumpForce: 1500
+  Form_1_GravityScale: 10
+  Form_1_Scale: {x: 0, y: 0, z: 0}
+  Form_1_Color: {r: 0, g: 0, b: 0, a: 0}
+  respawnPoint: {fileID: 0}
 --- !u!114 &125685852268348010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +177,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01afe06a0ca641e4aaddeb9386fdfc35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnKey: 0
   HitPoints: 0
+  onHitSound: {fileID: 0}
+  onDeathSound: {fileID: 0}
 --- !u!114 &4912034374887776487
 MonoBehaviour:
   m_ObjectHideFlags: 0
