@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -51,29 +50,48 @@ namespace Assets.Scripts
             foreach (var activator in Activators)
             {
                 if (switchTrigger.IsTouching(activator.GetCollider()))
-                {
                     return;
-                }
             }
             thisActivatabelGameObject.SetFixedState(!activateOnTrigger);
             SetActivatables(!activateOnTrigger);
+
+            if (!IsPlayerTouchingAnActivatable())
+            {
+                thisActivatabelGameObject.SetState(!activateOnTrigger);
+            }
         }
 
         void SetActivatables(bool state)
         {
             if (state)
             {
-                StartCoroutine(audioManager.PlaySound(activationSound));
+                if (activationSound != null)
+                    StartCoroutine(audioManager.PlaySound(activationSound));
             }
             else
             {
-                StartCoroutine(audioManager.PlaySound(deactivationSound));
+                if (deactivationSound != null)
+                    StartCoroutine(audioManager.PlaySound(deactivationSound));
             }
 
             foreach (var AG in ActivateableGameObjects)
             {
                 AG.SetState(state);
             }
+        }
+
+        bool IsPlayerTouchingAnActivatable()
+        {
+            foreach (var item in ActivateableGameObjects)
+            {
+                foreach (Activator activator in Activators)
+                {
+                    if (item.GetTriggerCollider() != null)
+                        if (item.GetTriggerCollider().IsTouching(activator.GetCollider()))
+                            return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -45,8 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] RespawnPoint respawnPoint;
 
-    private bool Grounded 
-    { 
+    private bool Grounded
+    {
         get
         {
             return grounded;
@@ -54,15 +51,13 @@ public class PlayerMovement : MonoBehaviour
         set
         {
             if (value != grounded)
-            {
                 grounded = value;
-            }
-        } 
+        }
     }
     bool grounded = true;
 
 
-    private void Awake() 
+    private void Awake()
     {
         playerBody = gameObject.GetComponent<Rigidbody2D>();
         playercollider = GetComponent<Collider2D>();
@@ -81,38 +76,37 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         if (Input.GetKey(right))
-        {
             playerBody.velocity = new Vector2(moveSpeed, playerBody.velocity.y);
-        }
+
         else if (Input.GetKey(left))
-        {
             playerBody.velocity = new Vector2(-moveSpeed, playerBody.velocity.y);
-        }
+
         else
-        {
-            playerBody.velocity = new Vector2(0,playerBody.velocity.y); 
-        }
+            playerBody.velocity = new Vector2(0, playerBody.velocity.y);
     }
 
     void Jump()
     {
         if (Input.GetKeyDown(jump) && Grounded)
         {
-            StartCoroutine(audioManager.PlaySound(jumpSound));
+            if (jumpSound != null)
+                StartCoroutine(audioManager.PlaySound(jumpSound));
+
             Grounded = false;
             playerBody.velocity = Vector2.zero;
             playerBody.AddForce(new Vector2(0, JumpForce));
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) 
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Ground" || other.gameObject.tag == "Player")
         {
-            StartCoroutine(audioManager.PlaySound(landingSound));
+            if (landingSound != null)
+                StartCoroutine(audioManager.PlaySound(landingSound));
 
             Grounded = true;
-        }    
+        }
     }
 
     private void ChangeForm()
@@ -121,9 +115,8 @@ public class PlayerMovement : MonoBehaviour
         {
             currentForm++;
             if (currentForm > 1)
-            {
                 currentForm = 0;
-            }
+            
             ChangeFormValues(currentForm);
         }
     }
@@ -153,9 +146,7 @@ public class PlayerMovement : MonoBehaviour
     void SetBounce(bool state)
     {
         if (GetComponent<Bounce>() != null)
-        {
             GetComponent<Bounce>().setBounce(state);
-        }
     }
 
     public void SetRespanwPoint(RespawnPoint point)

@@ -12,13 +12,10 @@ public class AudioManager : MonoBehaviour
     {
         List<AudioManager> audioManagers = FindObjectsOfType<AudioManager>().ToList();
         if (audioManagers.Count > 1)
-        {
             Destroy(this.gameObject);
-        }
+
         else
-        {
             DontDestroyOnLoad(this.gameObject);
-        }
     }
 
     public IEnumerator PlaySound(AudioClip audioClip, float delay = 0)

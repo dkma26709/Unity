@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class RespawnPoint : MonoBehaviour
 {
     Vector3 point;
+    ParticleSystem particleeffect;
 
     private void Start()
     {
         point = gameObject.transform.position;
+        particleeffect = GetComponent<ParticleSystem>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,6 +29,6 @@ public class RespawnPoint : MonoBehaviour
 
     public void PlayParticleEffect()
     {
-        GetComponent<ParticleSystem>().Play();
+        particleeffect.Play();
     }
 }

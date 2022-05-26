@@ -23,7 +23,8 @@ public class Bounce : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player" && canBounce)
         {
-            StartCoroutine(audioManager.PlaySound(BounceSound));
+            if (BounceSound != null)
+                StartCoroutine(audioManager.PlaySound(BounceSound));
             
             Rigidbody2D player = collider.gameObject.GetComponent<Rigidbody2D>();
             player.velocity = Vector2.zero;

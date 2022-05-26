@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1737690479293087609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.205491, y: -4.68, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.378, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -175,8 +175,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998ccf6bd94364b4fb1f112612f1112b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setLightWithState: 0
+  setShadowWithState: 0
+  trigger: {fileID: 0}
   fixedState: 0
-  isInitial: 0
+  isPermanent: 0
 --- !u!114 &3710845609440486083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +206,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -43760
+  m_InstanceId: 42664
 --- !u!114 &3104300928072593119
 MonoBehaviour:
   m_ObjectHideFlags: 0

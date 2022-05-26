@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,21 +10,18 @@ public class ButtonBarrierActivator : MonoBehaviour
     [SerializeField] Collider2D Player1Collider;
     [SerializeField] Collider2D Player2Collider;
 
-    private void Update() 
+    private void Update()
     {
-        BarrierCheck();    
+        BarrierCheck();
     }
 
-    void BarrierCheck() 
+    void BarrierCheck()
     {
         if ((ButtonPressCollider.IsTouching(Player1Collider) || ButtonPressCollider.IsTouching(Player2Collider)) && barriersEnabaled)
-        {
             SetBarrierState(false);
-        }
+
         else if (!ButtonPressCollider.IsTouching(Player1Collider) && !ButtonPressCollider.IsTouching(Player2Collider) && !barriersEnabaled)
-        {
             SetBarrierState(true);
-        }
     }
     void SetBarrierState(bool state)
     {
@@ -42,7 +38,7 @@ public class ButtonBarrierActivator : MonoBehaviour
 
 
 
-    
+
     // Bounds buttonColliderBounds;
     // private void Awake() 
     // {
@@ -63,7 +59,7 @@ public class ButtonBarrierActivator : MonoBehaviour
 
     //     // Make the ray
     //     RaycastHit2D hit  = Physics2D.Raycast(RayOrigin, RayDirection, RayLength*2);
-        
+
     //     // Draw the ray
     //     Debug.DrawLine(RayOrigin, RayOrigin + new Vector3( RayLength*2, 0,0), Color.red);
 
@@ -97,7 +93,7 @@ public class ButtonBarrierActivator : MonoBehaviour
 
 
 
-        // private void OnCollisionEnter2D(Collision2D other) 
+    // private void OnCollisionEnter2D(Collision2D other) 
     // {
     //     if (other.gameObject.tag == "Player" && barriersEnabaled)
     //     {
