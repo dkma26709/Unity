@@ -7,10 +7,29 @@ public class Health : MonoBehaviour
     [SerializeField] int health = 100;
     [SerializeField] ParticleSystem explosion;
     [SerializeField] ParticleSystem hit;
+    [SerializeField] int ScoreOnDestroy;
+    [SerializeField] bool isPlayer;
 
     CameraShake mainCamera;
+    AudioPlayer audioPlayer;
+    Score scoreKeeper;
+    LevelManager lvManager;
 
-    private void Start() 
+
+    [Header("SFX")]
+    [SerializeField] AudioClip hitSFX;
+    [SerializeField, Range(0, 1)] float hitVolume;
+    [SerializeField] AudioClip deathSFX;
+    [SerializeField, Range(0, 1)] float deathVolume;
+
+    void Awake()
+    {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+        scoreKeeper = FindObjectOfType<Score>();
+        lvManager = FindObjectOfType<LevelManager>();
+    }
+
+    private void Start()
     {
         mainCamera = FindObjectOfType<CameraShake>();
     }
@@ -20,7 +39,7 @@ public class Health : MonoBehaviour
         return health;
     }
 
-    void OnTriggerEnter2D(Collider2D otherCollider) 
+    void OnTriggerEnter2D(Collider2D otherCollider)
     {
         DamageDealer damageDealer = otherCollider.GetComponent<DamageDealer>();
         if (damageDealer != null)
@@ -28,16 +47,16 @@ public class Health : MonoBehaviour
             TakeDamage(damageDealer.GetDamage());
             PlayHitEffect();
             damageDealer.Hit();
-        }    
+        }
     }
 
     void TakeDamage(int damage)
     {
         health -= damage;
-        if (gameObject.tag == "Player")
+        audioPlayer.PlayAudioClip(hitSFX, hitVolume);
+        if (isPlayer)
         {
             mainCamera.Play();
-
         }
         if (health <= 0)
         {
@@ -48,7 +67,16 @@ public class Health : MonoBehaviour
     void Die()
     {
         PlayExplosionEffect();
+        audioPlayer.PlayAudioClip(deathSFX, deathVolume);
         Destroy(gameObject);
+        if (!isPlayer)
+        {
+            scoreKeeper.ModifyScore(ScoreOnDestroy);
+        }
+        else
+        {
+            lvManager.LoadGameOver();
+        }
     }
 
     void PlayExplosionEffect()

@@ -17,14 +17,14 @@ public class CameraShake : MonoBehaviour
         initialPosition = transform.position;
     }
 
-    public void Play() 
+    public void Play()
     {
         if (shake == null)
         {
-            shake  = StartCoroutine(Shake());
+            shake = StartCoroutine(Shake());
         }
 
-    } 
+    }
 
     IEnumerator Shake()
     {

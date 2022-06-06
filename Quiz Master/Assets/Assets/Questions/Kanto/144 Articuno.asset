@@ -16,6 +16,6 @@ MonoBehaviour:
   - Moltres
   - Fearow
   - Articuno
-  indexOfAnswer: 0
+  indexOfAnswer: 2
   blackPokemon: {fileID: 21300000, guid: f7e62112651c5714493e20fde9cf84ed, type: 3}
   visiblePokemon: {fileID: 21300000, guid: 9c34ccc48347d7d40bccd9d814993ea1, type: 3}

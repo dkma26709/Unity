@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2704327276115859255}
   - component: {fileID: 5741990412306800404}
-  - component: {fileID: 1566057449718980059}
-  - component: {fileID: 3956801458108948032}
   - component: {fileID: 442209825653778980}
   - component: {fileID: 2710756234772020739}
   - component: {fileID: 1485937683479227976}
@@ -21,7 +19,7 @@ GameObject:
   - component: {fileID: 4181190039519446629}
   m_Layer: 8
   m_Name: enemy_B
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,38 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &1566057449718980059
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8627816668981358618}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.16171646, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.08517039
---- !u!58 &3956801458108948032
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8627816668981358618}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.16109681, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.08207238
 --- !u!60 &442209825653778980
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -150,9 +116,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.07901977, y: -0.16271189}
+    - - {x: 0.04535079, y: 0.022363782}
+      - {x: 0.080927014, y: 0.018800974}
+      - {x: 0.16566396, y: 0.08047235}
+      - {x: 0.24628687, y: -0.0024502277}
+      - {x: 0.16028535, y: -0.08348894}
+      - {x: 0.077718616, y: -0.02242434}
+      - {x: 0.07901977, y: -0.16271189}
       - {x: -0.00023424625, y: -0.24035323}
       - {x: -0.08109693, y: -0.16181797}
+      - {x: -0.08031452, y: -0.022055984}
+      - {x: -0.17944956, y: -0.08141303}
+      - {x: -0.2405504, y: 0.0005879402}
+      - {x: -0.16890478, y: 0.07887936}
+      - {x: -0.078722, y: 0.023186088}
+      - {x: -0.044134498, y: 0.020281792}
       - {x: 0.00034538656, y: 0.2409801}
 --- !u!114 &2710756234772020739
 MonoBehaviour:
@@ -199,9 +177,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54862ef197dc9d40bf47d32454495e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 200
   explosion: {fileID: 6432847888455476746, guid: ae2720b3b4c861542ae143d35bd1da0a, type: 3}
   hit: {fileID: 6432847888455476746, guid: 9363812eed2713b4c978c9c20f651307, type: 3}
+  ScoreOnDestroy: 10
+  isPlayer: 0
+  hitSFX: {fileID: 8300000, guid: 4bd054cb65d52654880275a9d6d50c86, type: 3}
+  hitVolume: 1
+  deathSFX: {fileID: 8300000, guid: fb5f80d654fffa8479560f2d179f973f, type: 3}
+  deathVolume: 1
 --- !u!114 &-3343687242581744569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +217,8 @@ MonoBehaviour:
   baseFireRate: 2
   fireRateVariance: 1
   minimumfireRate: 0.2
+  shootSFX: {fileID: 8300000, guid: 63fe7060fc6a3cf44887235f84432c35, type: 3}
+  shootVolume: 0.5
   isFiring: 1
 --- !u!82 &4181190039519446629
 AudioSource:

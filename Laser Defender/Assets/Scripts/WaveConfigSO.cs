@@ -5,15 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Wave Config", fileName = "Default Config")]
 public class WaveConfigSO : ScriptableObject
 {
-  [SerializeField] Transform pathPrefab;
-  [SerializeField] float moveSpeed = 5f;
+    [SerializeField] Transform pathPrefab;
+    [SerializeField] float moveSpeed = 5f;
 
-  [Header("Spawn Time")]
-  [SerializeField] float timeBetweenEnemySpawns = 1f;
-  [SerializeField] float spawnTimeVariance = 0f;
-  [SerializeField] float minimumSpawnTime = 0.2f;
+    [Header("Spawn Time")]
+    [SerializeField] float timeBetweenEnemySpawns = 1f;
+    [SerializeField] float spawnTimeVariance = 0f;
+    [SerializeField] float minimumSpawnTime = 0.2f;
 
-  [SerializeField] List<GameObject> enemyPrefabs;
+    [SerializeField] List<GameObject> enemyPrefabs;
 
     public float GetMoveSpeed()
     {

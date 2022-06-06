@@ -14,12 +14,18 @@ public class Shooter : MonoBehaviour
     [SerializeField] float fireRateVariance = 0f;
     [SerializeField] float minimumfireRate = 0.2f;
 
+    [Header("SFX")]
+    [SerializeField] AudioClip shootSFX;
+    [SerializeField, Range(0, 1)] float shootVolume;
+
     Coroutine firingCoroutine;
 
-    public bool isFiring;
-    void Start()
-    {
+    AudioPlayer audioPlayer;
 
+    public bool isFiring;
+    void Awake()
+    {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
     }
 
     void Update()
@@ -44,12 +50,13 @@ public class Shooter : MonoBehaviour
     {
         while (isFiring)
         {
+            audioPlayer.PlayAudioClip(shootSFX, shootVolume);
             GameObject tempProjectile = Instantiate(projectile, gameObject.transform.position, Quaternion.identity);
             tempProjectile.GetComponent<Rigidbody2D>().velocity = transform.up * projectileSpeed;
             Destroy(tempProjectile, projectileLifeTime);
 
             yield return new WaitForSecondsRealtime(GetRandomFireRate());
-        } 
+        }
     }
 
     float GetRandomFireRate()
@@ -57,7 +64,7 @@ public class Shooter : MonoBehaviour
         if (fireRateVariance != 0)
         {
             float tempNumber = Random.Range(baseFireRate - fireRateVariance, baseFireRate + fireRateVariance);
-            return Mathf.Clamp(tempNumber ,minimumfireRate, float.MaxValue);
+            return Mathf.Clamp(tempNumber, minimumfireRate, float.MaxValue);
         }
         return baseFireRate;
     }
